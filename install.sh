@@ -2,9 +2,9 @@
 set -o errexit
 sudo apt update
 sudo apt install -y python3-wstool ninja-build stow
-mkdir -p ~/cartographer_ws/src
-cp .rosinstall ~/cartographer_ws/src/
-cd ~/cartographer_ws
+mkdir -p ~/catkin_ws/src
+cp .rosinstall ~/catkin_ws/src/
+cd ~/catkin_ws
 wstool update -t src
 git clone https://gitee.com/WLwindlinfeng/abseil-cpp.git
 cd abseil-cpp
@@ -20,6 +20,6 @@ ninja
 sudo ninja install
 cd /usr/local/stow
 sudo stow absl
-cd ~/cartographer_ws
+cd ~/catkin_ws
 rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y
 catkin_make_isolated --install --use-ninja -j3
